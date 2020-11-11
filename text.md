@@ -36,9 +36,9 @@ Run the code and ensure that the widget properly displays all appointments.
 #### 10 Enable Additional Views
 A view defines the time interval for which to display appointments. The following view types are supported:
 
-* [Day](/Documentation/Guide/Widgets/Scheduler/Views/View_Types/#Day_View);
+* [Day](/Documentation/Guide/Widgets/Scheduler/Views/View_Types/#Day_View) (default);
 
-* [Week and WorkWeek](/Documentation/Guide/Widgets/Scheduler/Views/View_Types/#Week_and_WorkWeek_Views);
+* [Week and WorkWeek](/Documentation/Guide/Widgets/Scheduler/Views/View_Types/#Week_and_WorkWeek_Views) (week is added by default);
 
 * [Month](/Documentation/Guide/Widgets/Scheduler/Views/View_Types/#Month_View);
 
@@ -48,7 +48,7 @@ A view defines the time interval for which to display appointments. The followin
 
 * [Custom](/Documentation/Guide/Widgets/Scheduler/Views/Customize_Individual_Views/).
 
-Use the views option to specify views. In this tutorial, we will use the "month" and "timelineWeek" types and also the default "day" and "week" ones.
+Use the views option to specify these views: "day", "week", "month", and "timelineWeek".
 
 [code]
 
