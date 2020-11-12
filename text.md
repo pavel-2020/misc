@@ -48,7 +48,7 @@ A view defines the time interval for which to display appointments. The followin
 
 * [Custom](/Documentation/Guide/Widgets/Scheduler/Views/Customize_Individual_Views/).
 
-Use the views option to specify these views: "day", "week", "month", and "timelineWeek".
+Use the views option to specify these views: "day", "week", "month", and "timelineWeek". Also, use the startDayHour option to set 10 am as the first hour of the grid's scale.
 
 [code]
 
@@ -63,7 +63,7 @@ In this step, we will forbid users to drag the appointments.
 
 
 #### 20 Group Appointments  
-We will group appointments by priority. For this, do the following:
+We will group appointments by resources. For this, do the following:
 1. Create a resource kind. In this example, this is the `priorities` array. It consists of objects each of which defines a priority category: sets its heading, color, and id. 
 2. Use the resources array to add a resource kind: specify the fieldExpr and dataSource fields in the resource object. By this moment, the appointments will be painted based on the priority.
 3. Use the groups option to specify the field by which appointments are categorized by priority.
