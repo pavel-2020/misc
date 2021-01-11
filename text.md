@@ -14,10 +14,10 @@ Add DevExtreme to your jQuery application, create a Button and set its text to "
 
 
 #### Stylize the Button
-**Specify a styling mode**
+##### Specify a styling mode
 The styling mode defines whether a Button has a colored border (*"outlined"*), a colored background (*"contained*" - default), or none of them (*"text"*). We will use a colored border. For this, set the [stylingMode](/Documentation/ApiReference/UI_Widgets/dxButton/Configuration/#stylingMode) option to *"outlined"*.
 
-**Specify a type**
+##### Specify a type
 The button [type](/Documentation/ApiReference/UI_Widgets/dxButton/Configuration/#type) property defines its color. The following types are available: *"danger"* (red), *"default"* (blue), *"normal"* (transparent), and *"success"* (green). The Button also has a special type of *"back"*. It transforms the UI component into a left arrow button.
 
 [code]
