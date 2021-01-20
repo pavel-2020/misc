@@ -23,13 +23,13 @@ You can implement any behavior that occurs when a user clicks a button. For this
 The styling mode defines whether a Button has a colored border (*"outlined"*), a colored background (*"contained*" - default), or none of them (*"text"*). We will use a colored border. For this, set the [stylingMode](/Documentation/ApiReference/UI_Widgets/dxButton/Configuration/#stylingMode) property to *"outlined"*.
 
 ##### Specify a type
-The button [type](/Documentation/ApiReference/UI_Widgets/dxButton/Configuration/#type) property defines its color. The following types are available: *"danger"* (red), *"default"* (blue), *"normal"* (transparent), and *"success"* (green). The Button also has a special type of *"back"*. It transforms the UI component into a left arrow button.
+The button [type](/Documentation/ApiReference/UI_Widgets/dxButton/Configuration/#type) property defines its color. The following types are available: *"danger"* (red), *"default"* (blue), *"normal"* (transparent), *"success"* (green), and *"back"* (transparent). The type of *"back"* is special - it ignores the **text**, **stylingMode** and other properties and transforms the UI component into a left arrow button. In this tutorial, we will set the **type** to *"success"*.
 
 [code]
 
 
 #### Add an icon
-Apart from text, buttons can also display [icons from different sources](https://js.devexpress.com/Documentation/Guide/Themes_and_Styles/Icons/). To add an icon, specify the [icon](/Documentation/ApiReference/UI_Widgets/dxButton/Configuration/#icon) property. In this tutorial, we will use the [DevExtreme icon library](/Documentation/Guide/Themes_and_Styles/Icons/#Built-In_Icon_Library):
+Apart from text, buttons can also display [icons from different sources](https://js.devexpress.com/Documentation/Guide/Themes_and_Styles/Icons/). To add an icon, specify the [icon](/Documentation/ApiReference/UI_Widgets/dxButton/Configuration/#icon) property (applies to all types except *"back"*). In this tutorial, we will use the [DevExtreme icon library](/Documentation/Guide/Themes_and_Styles/Icons/#Built-In_Icon_Library):
 
 [code]
 
