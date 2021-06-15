@@ -1,91 +1,30 @@
-The TreeList component uses a multi-column tree view to display data from a local or remote store and allows users to sort, group, filter, and perform other operations.
+If you use jQuery/ASP.NET, we recommend that you set **moveItemsOnDrop** to **true** because changes to the data model do not automatically update the HTML markup. If you set this property to **false**, you should move DOM nodes in the [onReorder](/api-reference/10%20UI%20Components/dxSortable/1%20Configuration/onReorder.md '/Documentation/ApiReference/UI_Components/dxSortable/Configuration/#onReorder') function.
 
-This tutorial shows how to add the TreeList to a page, bind it to data, and configure its core features. As a result, you will get a UI component that looks as follows:
+#####See Also#####
+- **Server-Side Implementation**: [ASP.NET](/concepts/05%20UI%20Components/FileUploader/20%20Upload%20Files/10%20Server-Side%20Implementation%20in%20ASP.NET/2%20Chunk%20Upload.md '/Documentation/Guide/UI_Components/FileUploader/Upload_Files/Server-Side_Implementation_in_ASP.NET/#Chunk_Upload') | [PHP](/concepts/05%20UI%20Components/FileUploader/20%20Upload%20Files/20%20Server-Side%20Implementation%20in%20PHP/2%20Chunk%20Upload.md '/Documentation/Guide/UI_Components/FileUploader/Upload_Files/Server-Side_Implementation_in_PHP/#Chunk_Upload')
 
-<demo code>
+#####See Also#####
+- **Use the DropDownBox as a column editor in the DataGrid**: <a href="https://github.com/DevExpress-Examples/datagrid-how-to-use-dropdownbox-as-a-column-editor-in-edit-mode-t548916" target="_blank">jQuery</a> | <a href="https://github.com/DevExpress-Examples/mvc-datagrid-how-to-use-dropdownbox-as-a-column-editor-in-edit-mode-t576412" target="_blank">ASP.NET MVC</a>
 
-Refer to the following sections for details on each configuration step. You can also find the full code in the following GitHub repository: <a href="https://github.com/DevExpress-Examples/getting-started-with-datagrid" target="_blank">getting-started-with-datagrid</a>.
+#####See Also#####
+- **Use the DropDownBox as a column editor in the DataGrid**: <a href="https://github.com/DevExpress-Examples/datagrid-how-to-use-dropdownbox-as-a-column-editor-in-edit-mode-t548916" target="_blank">jQuery</a> | <a href="https://github.com/DevExpress-Examples/mvc-datagrid-how-to-use-dropdownbox-as-a-column-editor-in-edit-mode-t576412" target="_blank">ASP.NET MVC</a>
 
-[tags] dxtreelist
+DevExtreme provides extensions for <a href="https://github.com/DevExpress/DevExtreme.AspNet.Data/blob/master/README.md" target="_blank">ASP.NET</a> and <a href="https://github.com/DevExpress/DevExtreme-PHP-Data/blob/master/README.md" target="_blank">PHP</a> that configure the **CustomStore** and implement server-side data processing. A third-party extension is available for <a href="https://github.com/oliversturm/devextreme-query-mongodb/blob/master/README.md" target="_blank">MongoDB</a>. You can also implement the **CustomStore** manually.
 
-#### 02 Create a TreeList
-[Add DevExtreme to your jQuery application]() and use the following code to create a TreeList:
+Stores can parse date-time values in <a href="https://www.w3.org/TR/NOTE-datetime" target="_blank">ISO8601 format</a> (for example, `"2016-07-13T16:05:00.000Z"`) or <a href="https://weblogs.asp.net/bleroy/dates-and-json" target="_blank">Microsoft format</a> (for instance, `"/Date(1198908717056)/"`). In the first case, the store ignores the timezone modifier (usually `Z`) when parsing the value. In the second case, the store adds the time-zone offset to the value according to the client's time-zone.
 
-#### 05 Bind the TreeList to Data
-TreeList can load data from the following sources:
+Access to a custom data source is configured using the [CustomStore](/api-reference/30%20Data%20Layer/CustomStore '/Documentation/ApiReference/Data_Layer/CustomStore/') component. DevExtreme provides <a href="https://github.com/DevExpress/DevExtreme.AspNet.Data/blob/master/README.md" target="_blank">ASP.NET</a> and <a href="https://github.com/DevExpress/DevExtreme-PHP-Data/blob/master/README.md" target="_blank">PHP</a> extensions that help configure it and implement server-side data processing. You can also use the third-party extension for <a href="https://github.com/oliversturm/devextreme-query-mongodb/blob/master/README.md" target="_blank">MongoDB</a>. 
 
-* Local data array
+Access to a custom data source is configured using the [CustomStore](/api-reference/30%20Data%20Layer/CustomStore '/Documentation/ApiReference/Data_Layer/CustomStore/') component. DevExtreme provides [ASP.NET](/concepts/70%20Data%20Binding/00%20Specify%20a%20Data%20Source/30%20Web%20API%2C%20PHP%2C%20MongoDB.md '/Documentation/Guide/Data_Binding/Specify_a_Data_Source/Web_API,_PHP,_MongoDB/') and [PHP](/concepts/70%20Data%20Binding/00%20Specify%20a%20Data%20Source/30%20Web%20API%2C%20PHP%2C%20MongoDB.md '/Documentation/Guide/Data_Binding/Specify_a_Data_Source/Web_API,_PHP,_MongoDB/') extensions to configure the **CustomStore** and implement server-side data processing. You can also use the third-party extension for [MongoDB](/concepts/70%20Data%20Binding/00%20Specify%20a%20Data%20Source/30%20Web%20API%2C%20PHP%2C%20MongoDB.md '/Documentation/Guide/Data_Binding/Specify_a_Data_Source/Web_API,_PHP,_MongoDB/'). If these extensions are not suitable, use the instructions below to configure the **CustomStore** manually.
 
-* Read-Only Data in JSON Format
+We recommend server-side data processing for large datasets. The [ODataStore](/api-reference/30%20Data%20Layer/ODataStore '/Documentation/ApiReference/Data_Layer/ODataStore/') supports server-side paging, filtering, and sorting. DevExtreme provides extensions that help implement data processing for [ASP.NET](/concepts/70%20Data%20Binding/00%20Specify%20a%20Data%20Source/30%20Web%20API%2C%20PHP%2C%20MongoDB.md '/Documentation/Guide/Data_Binding/Specify_a_Data_Source/Web_API,_PHP,_MongoDB/') and [PHP](/concepts/70%20Data%20Binding/00%20Specify%20a%20Data%20Source/30%20Web%20API%2C%20PHP%2C%20MongoDB.md '/Documentation/Guide/Data_Binding/Specify_a_Data_Source/Web_API,_PHP,_MongoDB/') servers. You can also use the third-party extension for [MongoDB](/concepts/70%20Data%20Binding/00%20Specify%20a%20Data%20Source/30%20Web%20API%2C%20PHP%2C%20MongoDB.md '/Documentation/Guide/Data_Binding/Specify_a_Data_Source/Web_API,_PHP,_MongoDB/'). If these extensions do not suit your data source, implement server-side data processing manually according to the protocol described in the [Custom Sources](/concepts/70%20Data%20Binding/00%20Specify%20a%20Data%20Source/60%20Custom%20Data%20Sources '/Documentation/Guide/Data_Binding/Specify_a_Data_Source/Custom_Data_Sources/') article.
 
-* Web API, PHP, MongoDB
+https://github.com/DevExpress/devextreme-documentation/blob/21_1/includes/common-link-setupdevextreme.md
+https://github.com/DevExpress/devextreme-documentation/blob/21_1/includes/mvc-redirects.md
+https://github.com/DevExpress/devextreme-documentation/blob/21_1/includes/common-link-handleevents.md
+https://github.com/DevExpress/devextreme-documentation/blob/21_1/includes/common-link-configurewidget.md
+https://github.com/DevExpress/devextreme-documentation/blob/21_1/includes/common-link-callmethods.md
+https://github.com/DevExpress/devextreme-documentation/blob/21_1/concepts/40%20Angular%20Components/00%20DevExtreme%20Angular%20Components.md -- здесь про "Visual Studio integration"
+https://github.com/DevExpress/devextreme-documentation/tree/21_1/concepts/40%20Angular%20Components/70%20Visual%20Studio%20Integration - что с этим разделом?
+https://github.com/DevExpress/devextreme-documentation/blob/21_1/concepts/60%20Themes%20and%20Styles/05%20Predefined%20Themes/50%20Apply%20a%20Theme.md - 
 
-* OData
-
-* Custom Data Sources.
-
-The data array can have a plain (default) or tree structure. In this tutorial, we will use the former. In this case, each data item must reference the parent node (the `parentId` default field) and have a unique identifier (the `id` default field). Since data items use non-default field names, we have specified them in the keyExpr and parentIdExpr properties. Also, we have specified the custom root node's identifier in the rootValue property (the default value is 0).
-
-#### 07 Expand Rows
-The default behavior is to collapse all rows on TreeList load. In this tutorial, we will enable the autoExpandAll property to expand them all. You can also specify certain rows in the expandedRowKeys property to expand them only.
-
-#### 10 Customize Columns
-**0 Customize Columns**          
-To customize columns, declare the [columns]() array. This array can contain objects (column configurations) and text strings (data field names). Use objects if you need to customize columns.
-
-**3 Reorder Columns**          
-To reorder columns, change their order in the **columns** array. Users can also reorder columns if you enable the [allowColumnReordering](/Documentation/ApiReference/UI_Components/dxTreeList/Configuration/#allowColumnReordering) property.
-
-**5 Resize Columns**        
-TreeList columns have equal widths by default. You can set each column's [width](/Documentation/ApiReference/UI_Components/dxTreeList/Configuration/columns/#width) or indicate that all columns should adjust their widths to their content ([columnAutoWidth](/Documentation/ApiReference/UI_Components/dxTreeList/Configuration/#columnAutoWidth)). Users can resize columns if you enable the [allowColumnResizing](/Documentation/ApiReference/UI_Components/dxTreeList/Configuration/#allowColumnResizing) property.
-
-**6 Fix Columns**          
-When the width of all columns exceeds the UI component's width, users can scroll the grid horizontally. If you set the [columnFixing](/Documentation/ApiReference/UI_Components/dxTreeList/Configuration/columnFixing/).[enabled](/Documentation/ApiReference/UI_Components/dxTreeList/Configuration/columnFixing/#enabled) property to **true**, users can show certain columns in the view regardless of how far they scroll the grid.
-
-You can also enable a column's [fixed](/Documentation/ApiReference/UI_Components/dxTreeList/Configuration/columns/#fixed) property in code. This fixes the column to the UI component's left edge. To change the position, set the [fixedPosition](/Documentation/ApiReference/UI_Components/dxTreeList/Configuration/columns/#fixedPosition) property.
-
-The following code fixes the `FullName` column to the default position and allows users to fix and unfix columns at runtime:
-
-**8 Hide Columns**        
-The TreeList displays all columns from the **columns** array. To hide a column, set its [visible](/Documentation/ApiReference/UI_Components/dxTreeList/Configuration/columns/#visible) property to **false**. Hidden columns appear in the [columnChooser](/Documentation/ApiReference/UI_Components/dxTreeList/Configuration/columnChooser/). Users can restore hidden columns from it. To enable the column chooser, set the **columnChooser**.[enabled](/Documentation/ApiReference/UI_Components/dxTreeList/Configuration/columnChooser/#enabled) property to **true**. If a column should not be visible even in the column chooser, simply do not declare it in the **columns** array.
-
-#### 20 Sort Data
-The **sorting**.[mode](/Documentation/ApiReference/UI_Components/dxTreeList/Configuration/sorting/#mode) property specifies whether users can sort records by single or multiple columns. This tutorial uses the default sorting mode - single. 
-
-You can also set a column's [sortOrder](/Documentation/ApiReference/UI_Components/dxTreeList/Configuration/columns/#sortOrder) and [sortIndex](/Documentation/ApiReference/UI_Components/dxTreeList/Configuration/columns/#sortIndex) properties to specify the initial sorting settings. **sortIndex** applies only in multiple sorting mode.
-
-#### 30 Filter and Search Data
-The TreeList includes the following UI elements used to filter and search data:
-
-- [filterRow](/Documentation/ApiReference/UI_Components/dxTreeList/Configuration/filterRow/)
-- [headerFilter](/Documentation/ApiReference/UI_Components/dxTreeList/Configuration/columns/headerFilter/)
-- [filterPanel](/Documentation/ApiReference/UI_Components/dxTreeList/Configuration/filterPanel/) with [filterBuilder](/Documentation/ApiReference/UI_Components/dxTreeList/Configuration/#filterBuilder)
-- [searchPanel](/Documentation/ApiReference/UI_Components/dxTreeList/Configuration/searchPanel/)
-
-In this tutorial, the **filterRow** and **searchPanel** are displayed:
-
-#### 40 Edit and Validate Data
-Users can add, update, and delete records. To allow these operations, enable the [allowAdding](/Documentation/ApiReference/UI_Components/dxTreeList/Configuration/editing/#allowAdding), [allowUpdating](/Documentation/ApiReference/UI_Components/dxTreeList/Configuration/editing/#allowUpdating), and [allowDeleting](/Documentation/ApiReference/UI_Components/dxTreeList/Configuration/editing/#allowDeleting) properties in the [editing](/Documentation/ApiReference/UI_Components/dxTreeList/Configuration/editing/) object. Multiple [edit modes](/Documentation/ApiReference/UI_Components/dxTreeList/Configuration/editing/#mode) are available. This tutorial uses the pop-up edit mode.
-
-DevExtreme includes a validation engine that checks edited values before they are saved. This engine supports different validation rule types, such as [Email](/Documentation/ApiReference/UI_Components/dxValidator/Validation_Rules/EmailRule/), [Compare](/Documentation/ApiReference/UI_Components/dxValidator/Validation_Rules/CompareRule/), [Range](/Documentation/ApiReference/UI_Components/dxValidator/Validation_Rules/RangeRule/), and more. Validation rules are specified per column; one column can use multiple rules. The code below assigns the [Required](/Documentation/ApiReference/UI_Components/dxValidator/Validation_Rules/RequiredRule/) rule to several columns.
-
-#### 50 Select Records
-The TreeList supports single and multiple record selection modes. Use the **selection**.[mode](/Documentation/ApiReference/UI_Components/dxTreeList/Configuration/selection/#mode) property to specify the mode.
-
-You can obtain the selected record's data in the [onSelectionChanged](/Documentation/ApiReference/UI_Components/dxTreeList/Configuration/#onSelectionChanged) function. In the code below, this function displays the selected employee under the TreeList:
-
-#### 60 Enable Row Drag & Drop
-Users can drag and drop nodes to reorder them or change their hierarchy. To enable these features, do the following:
-
-1. Set the allowReordering and allowDropInsideItem properties to true.
-
-2. Implement the onDragChange function.           
-Inside the function, prevent a node from being placed among its child nodes: cancel the drop event if a user places a node in the invalid position.
-
-1. Implement the onReorder function.          
-Inside the function, change the parent ID of the reordered node and the node's index in the data array. If the node was dropped onto another node, changing the parent ID is sufficient.
-
-To perform drag & drop operations, use the drag icons in the leftmost column. If you want to hide them and use rows instead, set the showDragIcons property to false.
-
-#### 70 Enable Pagination
-When paging is enabled, TreeList processes records page by page instead of processing them all at once. To add paging, set the paging.enabled property to **true** and specify the optimal number of records per page in the paging.pageSize property. Use this feature if your tests show noticeable lags without this feature.
