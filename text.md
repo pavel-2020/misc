@@ -1,30 +1,55 @@
-If you use jQuery/ASP.NET, we recommend that you set **moveItemsOnDrop** to **true** because changes to the data model do not automatically update the HTML markup. If you set this property to **false**, you should move DOM nodes in the [onReorder](/api-reference/10%20UI%20Components/dxSortable/1%20Configuration/onReorder.md '/Documentation/ApiReference/UI_Components/dxSortable/Configuration/#onReorder') function.
+The TreeView component represents textual data from a local or remote source in the form of a single-column tree view. The component allows users to select and view loaded data.
 
-#####See Also#####
-- **Server-Side Implementation**: [ASP.NET](/concepts/05%20UI%20Components/FileUploader/20%20Upload%20Files/10%20Server-Side%20Implementation%20in%20ASP.NET/2%20Chunk%20Upload.md '/Documentation/Guide/UI_Components/FileUploader/Upload_Files/Server-Side_Implementation_in_ASP.NET/#Chunk_Upload') | [PHP](/concepts/05%20UI%20Components/FileUploader/20%20Upload%20Files/20%20Server-Side%20Implementation%20in%20PHP/2%20Chunk%20Upload.md '/Documentation/Guide/UI_Components/FileUploader/Upload_Files/Server-Side_Implementation_in_PHP/#Chunk_Upload')
+This tutorial shows how to add the TreeView to a page, bind it to data, and configure its core features. As a result, you will get a UI component that looks as follows:
 
-#####See Also#####
-- **Use the DropDownBox as a column editor in the DataGrid**: <a href="https://github.com/DevExpress-Examples/datagrid-how-to-use-dropdownbox-as-a-column-editor-in-edit-mode-t548916" target="_blank">jQuery</a> | <a href="https://github.com/DevExpress-Examples/mvc-datagrid-how-to-use-dropdownbox-as-a-column-editor-in-edit-mode-t576412" target="_blank">ASP.NET MVC</a>
+_
 
-#####See Also#####
-- **Use the DropDownBox as a column editor in the DataGrid**: <a href="https://github.com/DevExpress-Examples/datagrid-how-to-use-dropdownbox-as-a-column-editor-in-edit-mode-t548916" target="_blank">jQuery</a> | <a href="https://github.com/DevExpress-Examples/mvc-datagrid-how-to-use-dropdownbox-as-a-column-editor-in-edit-mode-t576412" target="_blank">ASP.NET MVC</a>
+Refer to the following sections for details on each configuration step. You can also find the full code in the following GitHub repository: <a href="_" target="_blank">getting-started-with-treeview</a>.
 
-DevExtreme provides extensions for <a href="https://github.com/DevExpress/DevExtreme.AspNet.Data/blob/master/README.md" target="_blank">ASP.NET</a> and <a href="https://github.com/DevExpress/DevExtreme-PHP-Data/blob/master/README.md" target="_blank">PHP</a> that configure the **CustomStore** and implement server-side data processing. A third-party extension is available for <a href="https://github.com/oliversturm/devextreme-query-mongodb/blob/master/README.md" target="_blank">MongoDB</a>. You can also implement the **CustomStore** manually.
+[tags] dxtreeview
 
-Stores can parse date-time values in <a href="https://www.w3.org/TR/NOTE-datetime" target="_blank">ISO8601 format</a> (for example, `"2016-07-13T16:05:00.000Z"`) or <a href="https://weblogs.asp.net/bleroy/dates-and-json" target="_blank">Microsoft format</a> (for instance, `"/Date(1198908717056)/"`). In the first case, the store ignores the timezone modifier (usually `Z`) when parsing the value. In the second case, the store adds the time-zone offset to the value according to the client's time-zone.
+#### 02 Create a TreeView
+[Add DevExtreme to your jQuery application](/concepts/58%20jQuery%20Components/05%20Add%20DevExtreme%20to%20a%20jQuery%20Application/00%20Add%20DevExtreme%20to%20a%20jQuery%20Application.md '/Documentation/Guide/jQuery_Components/Add_DevExtreme_to_a_jQuery_Application/') and use the following code to create a TreeView:
 
-Access to a custom data source is configured using the [CustomStore](/api-reference/30%20Data%20Layer/CustomStore '/Documentation/ApiReference/Data_Layer/CustomStore/') component. DevExtreme provides <a href="https://github.com/DevExpress/DevExtreme.AspNet.Data/blob/master/README.md" target="_blank">ASP.NET</a> and <a href="https://github.com/DevExpress/DevExtreme-PHP-Data/blob/master/README.md" target="_blank">PHP</a> extensions that help configure it and implement server-side data processing. You can also use the third-party extension for <a href="https://github.com/oliversturm/devextreme-query-mongodb/blob/master/README.md" target="_blank">MongoDB</a>. 
+#### 05 Bind the TreeView to Data
+The TreeView supports plain and hierarchical (default) data structures. In a hierarchical data structure, each node should have a text, unique identifier, and optionally nest other nodes. Refer to the following demo for more information: [Hierarchical Data Structure](/Demos/WidgetsGallery/Demo/TreeView/HierarchicalDataStructure/).
 
-Access to a custom data source is configured using the [CustomStore](/api-reference/30%20Data%20Layer/CustomStore '/Documentation/ApiReference/Data_Layer/CustomStore/') component. DevExtreme provides [ASP.NET](/concepts/70%20Data%20Binding/00%20Specify%20a%20Data%20Source/30%20Web%20API%2C%20PHP%2C%20MongoDB.md '/Documentation/Guide/Data_Binding/Specify_a_Data_Source/Web_API,_PHP,_MongoDB/') and [PHP](/concepts/70%20Data%20Binding/00%20Specify%20a%20Data%20Source/30%20Web%20API%2C%20PHP%2C%20MongoDB.md '/Documentation/Guide/Data_Binding/Specify_a_Data_Source/Web_API,_PHP,_MongoDB/') extensions to configure the **CustomStore** and implement server-side data processing. You can also use the third-party extension for [MongoDB](/concepts/70%20Data%20Binding/00%20Specify%20a%20Data%20Source/30%20Web%20API%2C%20PHP%2C%20MongoDB.md '/Documentation/Guide/Data_Binding/Specify_a_Data_Source/Web_API,_PHP,_MongoDB/'). If these extensions are not suitable, use the instructions below to configure the **CustomStore** manually.
+If a data source has a plain structure, set the [dataStructure](/Documentation/ApiReference/UI_Components/dxTreeView/Configuration/#dataStructure) property to *"plain"*. Each node should reference its child node, specify a text and a unique identifier. Refer to this demo for details: [Plain Data Structure](https://js.devexpress.com/Demos/WidgetsGallery/Demo/TreeView/FlatDataStructure/).
 
-We recommend server-side data processing for large datasets. The [ODataStore](/api-reference/30%20Data%20Layer/ODataStore '/Documentation/ApiReference/Data_Layer/ODataStore/') supports server-side paging, filtering, and sorting. DevExtreme provides extensions that help implement data processing for [ASP.NET](/concepts/70%20Data%20Binding/00%20Specify%20a%20Data%20Source/30%20Web%20API%2C%20PHP%2C%20MongoDB.md '/Documentation/Guide/Data_Binding/Specify_a_Data_Source/Web_API,_PHP,_MongoDB/') and [PHP](/concepts/70%20Data%20Binding/00%20Specify%20a%20Data%20Source/30%20Web%20API%2C%20PHP%2C%20MongoDB.md '/Documentation/Guide/Data_Binding/Specify_a_Data_Source/Web_API,_PHP,_MongoDB/') servers. You can also use the third-party extension for [MongoDB](/concepts/70%20Data%20Binding/00%20Specify%20a%20Data%20Source/30%20Web%20API%2C%20PHP%2C%20MongoDB.md '/Documentation/Guide/Data_Binding/Specify_a_Data_Source/Web_API,_PHP,_MongoDB/'). If these extensions do not suit your data source, implement server-side data processing manually according to the protocol described in the [Custom Sources](/concepts/70%20Data%20Binding/00%20Specify%20a%20Data%20Source/60%20Custom%20Data%20Sources '/Documentation/Guide/Data_Binding/Specify_a_Data_Source/Custom_Data_Sources/') article.
+The TreeView component can load data from different data source types. To use a local array, assign it to the [items](/Documentation/ApiReference/UI_Components/dxTreeView/Configuration/#items) property. 
 
-https://github.com/DevExpress/devextreme-documentation/blob/21_1/includes/common-link-setupdevextreme.md
-https://github.com/DevExpress/devextreme-documentation/blob/21_1/includes/mvc-redirects.md
-https://github.com/DevExpress/devextreme-documentation/blob/21_1/includes/common-link-handleevents.md
-https://github.com/DevExpress/devextreme-documentation/blob/21_1/includes/common-link-configurewidget.md
-https://github.com/DevExpress/devextreme-documentation/blob/21_1/includes/common-link-callmethods.md
-https://github.com/DevExpress/devextreme-documentation/blob/21_1/concepts/40%20Angular%20Components/00%20DevExtreme%20Angular%20Components.md -- здесь про "Visual Studio integration"
-https://github.com/DevExpress/devextreme-documentation/tree/21_1/concepts/40%20Angular%20Components/70%20Visual%20Studio%20Integration - что с этим разделом?
-https://github.com/DevExpress/devextreme-documentation/blob/21_1/concepts/60%20Themes%20and%20Styles/05%20Predefined%20Themes/50%20Apply%20a%20Theme.md - 
+If you want to use a remote data source or apply the data-shaping API, use the dataSource property instead. The following articles explain how to do this for different data structures:
 
+- [Local Array](/Documentation/Guide/Data_Binding/Specify_a_Data_Source/Local_Array/)
+- [Read-Only Data in JSON Format](/Documentation/Guide/Data_Binding/Specify_a_Data_Source/Read-Only_Data_in_JSON_Format/)
+- [Web API, PHP, MongoDB](/Documentation/Guide/Data_Binding/Specify_a_Data_Source/Web_API,_PHP,_MongoDB/)
+- [OData](/Documentation/Guide/Data_Binding/Specify_a_Data_Source/OData/)
+- [Custom Data Sources](/Documentation/Guide/Data_Binding/Specify_a_Data_Source/Custom_Data_Sources/)
+
+In this tutorial, we use the **items[]** property to bind a hierarchical array. 
+
+#### 10 Customize Node Appearance
+To customize all nodes, specify the [itemTemplate](/Documentation/ApiReference/UI_Components/dxTreeView/Configuration/#itemTemplate) property. If you need to customize individual nodes, specify the [template](/Documentation/ApiReference/UI_Components/dxTreeView/Configuration/items/#template) and other [items[] properties](/Documentation/ApiReference/UI_Components/dxTreeView/Configuration/items/).
+
+If you use jQuery, you can apply a 3rd-party template engine. For details, see the [3rd-Party Template Engines](/Documentation/Guide/UI_Components/Common/Templates/#3rd-Party_Template_Engines) article.
+
+In this tutorial, we make specific nodes [expanded](/Documentation/ApiReference/UI_Components/dxTreeView/Configuration/items/#expanded) and specify the **itemTemplate**.
+
+#### 30 Search Data
+Enable the [searchEnabled](/Documentation/ApiReference/UI_Components/dxTreeView/Configuration/#searchEnabled) property to add the search bar. Use the [searchMode](/Documentation/ApiReference/UI_Components/dxTreeView/Configuration/#searchMode) property to specify whether items should contain (default), start with, or match the search string. In this tutorial, the search mode is *"startswith"*:
+
+#### 50 Select Records
+To enable node selection, set the [selectByClick](/Documentation/ApiReference/UI_Components/dxTreeView/Configuration/#selectByClick) property to **true**. If you want to add checkboxes for each node, set the [showCheckBoxesMode](/Documentation/ApiReference/UI_Components/dxTreeView/Configuration/#showCheckBoxesMode) property to *"normal"* or *"selectAll"*. The latter mode additionally displays the "Select All" checkbox at the top of the TreeView.
+
+The default selection mode is multiple. As an alternative, you can set the [selectionMode](/Documentation/ApiReference/UI_Components/dxTreeView/Configuration/selectionMode) property to *"single"*.
+
+To obtain the selected node's data, use the [onSelectionChanged](/Documentation/ApiReference/UI_Components/dxTreeView/Configuration/#onSelectionChanged) function. In the code below, this function displays the selected book and its author:
+
+#### 70 Enhance Performance on Large Datasets
+If the dataset is large, enable the Virtual Mode to enhance performance. In this mode, the TreeView loads a set of child nodes once a user expands the parent node for the first time. 
+
+To enable this feature, set the [virtualModeEnabled](/Documentation/ApiReference/UI_Components/dxTreeView/Configuration/#virtualModeEnabled) property to **true**. Note that this mode is only available when the TreeView's [dataStructure](/Documentation/ApiReference/UI_Components/dxTreeView/Configuration/#dataStructure) is plain.
+
+When the data source is remote, the TreeView requests data for each expanded node. To prevent this for nodes that do not nest others, set the [hasItems](/Documentation/ApiReference/UI_Components/dxTreeView/Configuration/items/#hasItems) field to **false** for the corresponding data objects.
+
+As an alternative to virtual mode, you can use a custom logic to process requested data. To do this, specify the [createChildren](/Documentation/ApiReference/UI_Components/dxTreeView/Configuration/#createChildren) function as shown in the [Load Data on Demand](/Demos/WidgetsGallery/Demo/TreeView/LoadDataOnDemand) demo.
