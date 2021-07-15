@@ -14,11 +14,9 @@ Refer to the following sections for details on each configuration step. You can 
 #### 05 Bind the TreeView to Data
 The TreeView supports plain and hierarchical (default) data structures. In a hierarchical data structure, each node should have a text, unique identifier, and optionally nest other nodes. Refer to the following demo for more information: [Hierarchical Data Structure](/Demos/WidgetsGallery/Demo/TreeView/HierarchicalDataStructure/).
 
-If a data source has a plain structure, set the [dataStructure](/Documentation/ApiReference/UI_Components/dxTreeView/Configuration/#dataStructure) property to *"plain"*. Each node should reference its child node, specify a text and a unique identifier. Refer to this demo for details: [Plain Data Structure](https://js.devexpress.com/Demos/WidgetsGallery/Demo/TreeView/FlatDataStructure/).
+If a data source has a plain structure, set the [dataStructure](/Documentation/ApiReference/UI_Components/dxTreeView/Configuration/#dataStructure) property to *"plain"*. Each node should have a unique identifier, a text, and a reference to its parent node. If corresponding data fields use custom names, use the keyExpr, parentIdExpr, and itemsExpr properties to specify them. Refer to this demo for details: [Plain Data Structure](https://js.devexpress.com/Demos/WidgetsGallery/Demo/TreeView/FlatDataStructure/).
 
-The TreeView component can load data from different data source types. To use a local array, assign it to the [items](/Documentation/ApiReference/UI_Components/dxTreeView/Configuration/#items) property. 
-
-If you want to use a remote data source or apply the data-shaping API, use the dataSource property instead. The following articles explain how to do this for different data structures:
+To bind the TreeView to data, use the dataSource property. The following articles explain how to do this for different data structures:
 
 - [Local Array](/Documentation/Guide/Data_Binding/Specify_a_Data_Source/Local_Array/)
 - [Read-Only Data in JSON Format](/Documentation/Guide/Data_Binding/Specify_a_Data_Source/Read-Only_Data_in_JSON_Format/)
@@ -26,7 +24,7 @@ If you want to use a remote data source or apply the data-shaping API, use the d
 - [OData](/Documentation/Guide/Data_Binding/Specify_a_Data_Source/OData/)
 - [Custom Data Sources](/Documentation/Guide/Data_Binding/Specify_a_Data_Source/Custom_Data_Sources/)
 
-In this tutorial, we use the **items[]** property to bind a hierarchical array. 
+In this tutorial, we use the **dataStructure** property to bind a plain array. 
 
 #### 10 Customize Node Appearance
 To customize all nodes, specify the [itemTemplate](/Documentation/ApiReference/UI_Components/dxTreeView/Configuration/#itemTemplate) property. If you need to customize individual nodes, specify the [template](/Documentation/ApiReference/UI_Components/dxTreeView/Configuration/items/#template) and other [items[] properties](/Documentation/ApiReference/UI_Components/dxTreeView/Configuration/items/).
@@ -43,13 +41,10 @@ To enable node selection, set the [selectByClick](/Documentation/ApiReference/UI
 
 The default selection mode is multiple. As an alternative, you can set the [selectionMode](/Documentation/ApiReference/UI_Components/dxTreeView/Configuration/selectionMode) property to *"single"*.
 
-To obtain the selected node's data, use the [onSelectionChanged](/Documentation/ApiReference/UI_Components/dxTreeView/Configuration/#onSelectionChanged) function. In the code below, this function displays the selected book and its author:
+To obtain the selected node's data, use the [onItemSelectionChanged](/Documentation/ApiReference/UI_Components/dxTreeView/Configuration/#onItemSelectionChanged) function. In the code below, this function displays the selected book and its author:
+
+#### 60 Enable Node Drag & Drop
+Drag & Drop allows users to reorder nodes and change their hierarchy. This functionality is not used in this tutorial. For details, refer to the Drag & Drop for Plain Data Structure demo.
 
 #### 70 Enhance Performance on Large Datasets
-If the dataset is large, enable the Virtual Mode to enhance performance. In this mode, the TreeView loads a set of child nodes once a user expands the parent node for the first time. 
-
-To enable this feature, set the [virtualModeEnabled](/Documentation/ApiReference/UI_Components/dxTreeView/Configuration/#virtualModeEnabled) property to **true**. Note that this mode is only available when the TreeView's [dataStructure](/Documentation/ApiReference/UI_Components/dxTreeView/Configuration/#dataStructure) is plain.
-
-When the data source is remote, the TreeView requests data for each expanded node. To prevent this for nodes that do not nest others, set the [hasItems](/Documentation/ApiReference/UI_Components/dxTreeView/Configuration/items/#hasItems) field to **false** for the corresponding data objects.
-
-As an alternative to virtual mode, you can use a custom logic to process requested data. To do this, specify the [createChildren](/Documentation/ApiReference/UI_Components/dxTreeView/Configuration/#createChildren) function as shown in the [Load Data on Demand](/Demos/WidgetsGallery/Demo/TreeView/LoadDataOnDemand) demo.
+If you use a large remote dataset, enable the Virtual Mode to enhance performance. In this mode, the TreeView loads a set of child nodes once a user expands the parent node for the first time. Refer to the Virtual Mode demo for details.
